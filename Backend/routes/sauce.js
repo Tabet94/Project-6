@@ -13,6 +13,8 @@ const multer = require('../Middleware/multer-config');
 // Route to handle Sauce creation....................................................
 router.post('/', auth, multer, sauceCtrl.createSauce);
 router.get('/', auth, sauceCtrl.getAllSauces);
+router.get('/:id', auth, sauceCtrl.getOneSauce);
+
 
 
 
