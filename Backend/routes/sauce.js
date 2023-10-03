@@ -7,9 +7,11 @@ const router = express.Router();
 
 // Import the 'sauceCtrl' module which contains controller functions for user routes ...................................
 const sauceCtrl = require('../controllers/sauce');
+const auth = require('../Middleware/auth');
+const multer = require('../Middleware/multer-config');
 
 // Route to handle Sauce creation....................................................
-router.post('/',sauceCtrl.createSauce);
+router.post('/', auth, multer, sauceCtrl.createSauce);
 
 
 
