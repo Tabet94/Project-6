@@ -35,7 +35,7 @@ exports.createSauce = (req, res, next) => {
     );
   };
 
-  // Function to "GET ALL SAUCES" .......................................................................
+// Function to "GET ALL SAUCES" .......................................................................
 exports.getAllSauces =  (req, res, next) => {
   
   // Retrieve all sauces from the database
@@ -52,5 +52,39 @@ exports.getOneSauce = (req, res, next) => {
   Sauce.findOne({_id : req.params.id})
   .then( sauce => res.status(200).json(sauce))
   .catch( error => res.status(404).json({ error }))
+};
+
+// Function to "UPDATE SAUCE" .....................................................................
+exports.modifySauce = (req, res, next) => {
+  const url = req.protocol + '://' + req.get('host'); 
+
+  const updatedSauce = {
+    _id: req.params.id,
+    name: req.body.sauce.name,
+    manufacturer: req.body.sauce.manufacturer,
+    mainPepper: req.body.sauce.mainPepper,
+    description: req.body.sauce.description,
+    price: req.body.sauce.price,
+    userId: req.body.sauce.userId,
+    heat: req.body.sauce.heat,
+    likes: req.body.sauce.likes,
+    dislikes: req.body.sauce.dislikes,
+  };
+
+  if (req.file) {
+    updatedSauce.imageUrl = url + '/images/' + req.file.filename;
+  }
+
+  Sauce.updateOne({ _id: req.params.id }, updatedSauce)
+    .then(() => {
+      res.status(201).json({
+        message: 'Sauce updated',
+      });
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
 };
 
