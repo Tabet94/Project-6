@@ -4,10 +4,14 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user'); 
 const sauceRoutes = require('./routes/sauce'); 
 const bodyParser = require('body-parser'); 
-const path = require('path'); 
+const path = require('path');
+const helmet = require('helmet'); 
 
 // Create an instance of the Express application
 const app = express();
+
+
+
 
 // Middleware to parse JSON request bodies
 app.use(express.json());
@@ -30,7 +34,15 @@ app.use((req, res, next) => {
     next();
 });
 
+// Use the bodyParser middleware to parse JSON request bodies
 app.use(bodyParser.json());
+
+// Use the helmet middleware to enhance security
+app.use(helmet());
+
+// Use the helmet.crossOriginResourcePolicy middleware to set the cross-origin resource policy
+app.use(helmet.crossOriginResourcePolicy({ policy: 'cross-origin' }));
+
 
 // Serve static files (images) from a specific directory
 app.use('/images', express.static(path.join(__dirname, 'images')));
