@@ -22,7 +22,7 @@ mongoose.connect('mongodb+srv://tabe:5EhHM7LmeYQvPmiU@cluster0.4cxkhlu.mongodb.n
         console.error(error);
     });
 
-// Middleware to handle CORS (Cross-Origin Resource Sharing)
+// Middleware to handle CORS 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -39,5 +39,5 @@ app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes); // User-related routes
 app.use('/api/sauces', sauceRoutes); // Sauce-related routes
 
-// Export the Express application for use in other parts of your code
+// Export the Express application 
 module.exports = app;
