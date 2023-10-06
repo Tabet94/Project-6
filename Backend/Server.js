@@ -1,5 +1,5 @@
 const http = require('http'); // Import the HTTP module
-const app = require('./app'); // Import the Express application
+const app = require('./App'); // Import the Express application
 
 // Function to normalize the port number
 const normalizePort = val => {

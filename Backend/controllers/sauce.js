@@ -130,8 +130,6 @@ exports.deleteSauce = (req, res, next) => {
 
 
 
-
-
 // Function to "LIKE SAUCE" ..........................................................................
 exports.likeSauce = (req, res, next) => {
   // Find the sauce by its ID
